@@ -1,4 +1,4 @@
-C# java-ee-notes
+# java-ee-notes
 
 ### Introduction
 
