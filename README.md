@@ -1,4 +1,6 @@
-# java-ee-notes
+C# java-ee-notes
+
+### Introduction
 
 - **Java EE** = collection of abstract specifications that together form a complete solution for solving commonly faced challenges in software development.
 
@@ -14,3 +16,22 @@ Application Server Examples: Payara Server (Glassfish), IBM OpenLiberty, JBoss W
 - **Jakarta EE** = Java EE going forward. Oracle moved the Java platform to be hosted by the Eclipse Foundation (https://jakarta.ee). Thus the new cloud native Java EE is hosted at Eclipse Foundation.
 
 - **Java EE and Spring Framework** = both influenced each other 
+
+<hr />
+
+### Java EE Basics
+- **Entity Lifecycle Callback** = A lifecycle callback is a method that will be invoked at a specific lifecycle point of an entity. An example of a lifecycle in JPA API are @PrePersist, it is a point where a method is executed just before it is persisted into the database. 
+Note: Java EE is annotation driven.
+
+- **Bean Validation API (for db entities)** = e.g. @NotEmpty, @Size, @FutureOrPresent, @NotNull
+
+- **Three Key APIs in Java EE** 
+1. Java Persistence API (JPA)
+2. CDI (Context and Dependency Injection)
+3. JAX-RS (Java API for RESTful Web Services)
+
+-  **JPA** = responsible for storing and retrieving info from relational databases, which can be extended to handle NoSQL databases. It is the data layer of an application.
+
+- **JAX-RS** = Java API for RESTful Web Services. Exposes resources over HTTP protocol as web services.
+
+- **CDI** = Context and Dependency Injection API. Standardized way to create highly decoupled applications. It managed various interactions of different components to allow loose decoupling.
