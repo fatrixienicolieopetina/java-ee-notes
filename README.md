@@ -78,7 +78,7 @@ Note: Java EE is annotation driven.
     -  Application Scope (_@ApplicationScoped_) = singleton, lifetime of the application. It creates a single contextual instance that lasts with the application.
     -  Conversation Scope (_@ConversationScoped_) = similar to session scoped except that it is managed by the developer. The CDI creates the bean but the developer decides when to end it (??)
 
-- **CDI Producers** = way to turn objects or classes that you don't own into CDI injectable bean/contextual instance. Producer methods are very useful when the concrete type to be injected varies at runtime. Field producers on one hand make a field a CDI managed bean. Qualifying beans can also be used to prevent ambiguity in using producers. Disposers (annotated with @Disposes) do custom cleanup on a producer class. It is called before the bean is destroyed.
+- **CDI Producers** = way to turn objects or classes that you don't own into CDI injectable bean/contextual instance. Producer methods are very useful when the concrete type to be injected varies at runtime. Field producers on one hand make a field a CDI managed bean. Qualifying beans can also be used to prevent ambiguity in using producers. Disposers (annotated with _@Disposes_) do custom cleanup on a producer class. It is called before the bean is destroyed.
 
 - **CDI Interceptors** = used to intercept a method call to do some preprocessing.
 
