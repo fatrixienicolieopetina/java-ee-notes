@@ -35,3 +35,57 @@ Note: Java EE is annotation driven.
 - **JAX-RS** = Java API for RESTful Web Services. Exposes resources over HTTP protocol as web services.
 
 - **CDI** = Context and Dependency Injection API. Standardized way to create highly decoupled applications. It managed various interactions of different components to allow loose decoupling.
+
+<hr />
+
+### Context and Dependency Injection API
+- **Dependency Injection** = specific form of inversion control (software strategy where individual components have their dependencies supplied to them). This externalizes dependency in the application to create loosely coupled components.
+
+- **CDI Features**
+    - Dependency Injection (Typesafe Dependency Injection) = declare dependency on types, compiler catches error on runtime
+    - Lifecycle Contexts
+    - Interceptors = intercept requests to method
+    -  Events = way to develop highly decoupled applications. Events can be fired while observers listen for the fired events.
+    -  Service Provider Interface (SPI) = set of hooks and API and interfaces that can be used as extensions, e.g. Apache libraries.
+
+- **CDI Bean Discovery** = mechanism where DI runtime analyzes and discovers beans for it to manage default bean discovery mode, i.e beans that are annotated, e.g. _@Annotated_. There are three types of bean discovery mode, ALL (includes those beans that are not annotated), ANNOTATED and NONE. This can be set in the _beans.xml_. 
+
+- **CDI Container** = factory in which Java classes comes in and goes out with functionalities and features . It is an application that manages beans.
+
+- **Beans and Contextual Instance** 
+     - Bean = template which a developer creates
+     - Contextual Instance = instance of a bean created by the CDI container and is managed by it
+
+- **CDI Injection Points** = where to inject dependencies. 
+    - Field = injections that takes place on the field of a bean
+    - Constructor = request the CDI container for contextual instances as parameters to constructors.
+    - Method = request a contextual instance as a parameter to a method.
+
+- **CDI Lifecycle Callback** = point or hook of a bean.
+    - _@PostConstruct_ = method should be void. It is a point at which a bean, together with all injected dependencies are initiated and is ready to use and put into service.
+    - _@PreDestroy_ = invoked before the bean is destroyed and is released for garbage collection.
+
+- **Managed Bean** = any bean eligible for CDI management.
+
+- **CDI Qualifiers** = a way to avoid ambiguity when injecting contextual instances and to distinguish bean types.
+
+- **CDI Stereotypes** = collection of annotations grouped together as one. _@Named_ is one of the default qualifiers of CDI API. It allows access of a particular bean to be accessed from a web page.
+
+- **CDI Scopes and Contexts** = Scope associates a specific contextual instance to a context (lifetime of a bean). Context refers to a valid environment with a well-defined lifecycle and time.
+    -  Dependent Scope = default without annotation, meaning it is dependent on the scope of the contextual instance it is injected. It follows the context of the bean it is injected.
+    -  Request Scope (_@RequestScoped_) = associated with an HTTP request. Every request will create a new contextual instance.
+    -  Session Scoped (_@SessionScoped_) = associated/bound to an HTTP session. Note that beans are lazily created. Thus it can be hibernated or be passive if not used since sessions are usually long lasting.
+    -  Application Scope (_@ApplicationScoped_) = singleton, lifetime of the application. It creates a single contextual instance that lasts with the application.
+    -  Conversation Scope (_@ConversationScoped_) = similar to session scoped except that it is managed by the developer. The CDI creates the bean but the developer decides when to end it (??)
+
+- **CDI Producers** = way to turn objects or classes that you don't own into CDI injectable bean/contextual instance. Producer methods are very useful when the concrete type to be injected varies at runtime. Field producers on one hand make a field a CDI managed bean. Qualifying beans can also be used to prevent ambiguity in using producers. Disposers (annotated with @Disposes) do custom cleanup on a producer class. It is called before the bean is destroyed.
+
+- **CDI Interceptors** = used to intercept a method call to do some preprocessing.
+
+- **CDI Event Mechanism** = link disparate parts of an application. Payload is the informatin passed to the observers of an event. This mechanism helps write a reactive application.
+
+- **The Event Interface API** = Observers can be prioritized during method invocations by using the _@Priority_ qualifier
+    - Simple Events = notify all observers of the event
+    - Qualifying Events = use qualifiers to only invoke certain observers
+    - Conditional Observers - use notifyObserver and during as parameters to the _@Observes_ annotation.
+    - Async Events 
