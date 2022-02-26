@@ -89,3 +89,20 @@ Note: Java EE is annotation driven.
     - Qualifying Events = use qualifiers to only invoke certain observers
     - Conditional Observers - use notifyObserver and during as parameters to the _@Observes_ annotation.
     - Async Events 
+
+
+<hr />
+
+### Java Persistence API 
+= used to map Java objects to relational database tables. The Java Persistence API meets the ORM Manifesto tenets below.
+
+
+- **ORM Manifesto** (Object Relational Mapping Manifesto)
+    - **_Objects not Tables_** = devs write objects not tables. Thus think in terms of objects, not database tables.
+    - **_Convenience, Not Ignorance_** = an ORM should be convenient. Developers should at least have minimum knowledge on relational databases. ORM is not a way to mask ignorance but for convenience.
+    - **_Unobtrusive not transparent_**. an ORM should make it so that developers are able to control what is in the database, and have complete control on what is being persisted.
+    - **_Legacy Data, New Objects_** = Expect ORM to allow creation of new objects from legacy data, i.e reverse engineer legacy database to Java objects.
+    - **_Just Enough, not too much_** = expect ORM to give us all the tools to solve generally encountered problems due to impedance mismatch (term used to refer to problems that occur due to difference between the database model and programming language). An ORM should not be excessively heavy weight.
+    - **_Local but mobile_** = The data is local but there should be an ability of a the persistent state of the application to travel to different parts of the application.
+    - **_Standard API, pluggable implementation_** = rely on a standard API but can be swapped implementations if needed.
+
