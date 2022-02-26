@@ -106,3 +106,31 @@ Note: Java EE is annotation driven.
     - **_Local but mobile_** = The data is local but there should be an ability of a the persistent state of the application to travel to different parts of the application.
     - **_Standard API, pluggable implementation_** = rely on a standard API but can be swapped implementations if needed.
 
+
+- **JPA Entity** 
+    - the most unit component is a plain old java object (POJO) 
+    - every entity must have a unique identifier
+    - @_MappedSuperClass_ annotation can be used to to use superclasses containing common fields of entities
+    - _@AttributeOverride_ annotation is used to override entities of the superclass
+    - _@Basic_ annotation is used to denote that the field being mapped is a basic type like long, String, etc. This is optional to put since it is default.
+    - _@Column_ is used to customize database mappings.
+    - _@Transient_ annotation can be used for fields in the entity class that should not be mapped to the database
+    - Access Types = process by which the persistence provider accesses states in the entity. Field access type happens when the provider accesses class fields directly through reflection. Property access type happens when the java bean property methods are used to access states, i.e. use of getter and setter methods. To use property access, the getter method must be annotated with _@Id_. Mixed access type uses both field and property access in the same entity class using _@Access_ annotation. The field should be mapped @Transient for the columns using property access to avoid duplicate mapping.
+    - Enum types are assigned ordinal values so by default, they are mapped to the db as integers. This can cause a lot of problems. _@Enumerated_ annotation can be used to save enums as strings to prevent problems.
+    - _@Lob_ (large object) can be used to map large objects, e.g. images. Use _@Basic_ annotation with fetch type to specify whether the object will be eagerly or lazily fetched.
+    - Lazy and Eager Fetching. Basic fields by default are eagerly fetched. Making a field to be lazily fetched is up to the persistence provider so there are times that it will be ignored.
+    - JPA 2.2 introduces native support for LocalDate, LocalTime, LocalDateTime, OffsetTime, OffsetDateTime
+    - _@Embeddable_ annotation can be used to mean that a class does not have an identity of its own in the databled (not mapped or there is no corresponding database table). When added to an entity class, _@Embedded_ annotation is used. The fields of the embedded class would be part of the fields of the entity using that class. 
+
+
+- **JPA Entity ID Generation** = using _@Id_ makes a field the primary column of a table
+    - AUTO generation strategy = let persistence provide generate the id values.
+    - IDENTITY generation strategy = this is database dependent. The persistence provider defers the generation of ID to the database since databases usually supports primary key generation
+    - SEQUENCE generation strategy = use annotation _@SequenceGenerator_ name value as a parameter to the generator attribute of the _@GeneratorValue_ annotation of the id field. The sequence used should already exist in the database.  
+    - TABLE generation strategy = annotated with _@TableGenerator_. A table is generator to store the IDs.
+
+
+- **JPA Entity Relationship Mapping**
+    - Directionality = refers to how relationship is viewed from one entity to the other (bidirectional or unidirectional)
+    - Cardinality = how many entities are there on each end of the relationship (one-to-many, many-to-one, one-to-one, many-to-many)
+    - Ordinality (Optionality) = should the other part of the relationship exist or not during persistence? Value is usually boolean, 0 or 1. Just ask if an entity can exist without another entity.
