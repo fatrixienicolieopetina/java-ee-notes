@@ -132,5 +132,14 @@ Note: Java EE is annotation driven.
 
 - **JPA Entity Relationship Mapping**
     - Directionality = refers to how relationship is viewed from one entity to the other (bidirectional or unidirectional)
-    - Cardinality = how many entities are there on each end of the relationship (one-to-many, many-to-one, one-to-one, many-to-many)
+    - Cardinality = how many entities are there on each end of the relationship (one-to-many, many-to-one, one-to-one, many-to-many). Note that cardinality is named from the source to target entity, e.g. one-to-many (from source to target respectively)
     - Ordinality (Optionality) = should the other part of the relationship exist or not during persistence? Value is usually boolean, 0 or 1. Just ask if an entity can exist without another entity.
+    - Single Valued Relationships = only one entity type at the target of the relationship.Owner of the relationship is the table with the foreign key column
+    - _@JoinColumn_ is used for foreign key columns
+    - _@OnetoOne_ would add a unique constraint to a table
+    - Collection Valued Relationships = target of the relationship has many entities, e.g. _@OneToMany_, _@ManyToMany_
+    - When using _@OneToMany_ annotation, an _@ManyToOne_ should be created on the owning entity to avoid unwanted joins
+    - With _@ManyToMany_ relationship, joins are used by the annotation _@JoinTable_
+    - Collection values like @ManyToMany fields are lazily loaded
+    - _@ElementCollection_ annotation is used to store collections of non-entity types to the db. This will create a new table with of foreign key of the embedding entity. _@CollectionTable_ annotation is used to customize the collection table created
+    - _@OrderedBy_ annotation can be used to order a list of entities
