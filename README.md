@@ -145,10 +145,12 @@ Note: Java EE is annotation driven.
     - _@OrderedBy_ annotation can be used to order a list of entities
 
 <hr />
-- ### Enterprise Java Beans
-    - **Enterprise Java Beans** gives a set of API, mostly annotation-driven that helps to make development of business easier. Goal is to help encapsulate the business level or the logic of the application in a well-defined way, i.e. it EJBs house the business the logic
 
-    - **Features of EJB**  
+### Enterprise Java Beans
+
+   - **Enterprise Java Beans** gives a set of API, mostly annotation-driven that helps to make development of business easier. Goal is to help encapsulate the business level or the logic of the application in a well-defined way, i.e. it EJBs house the business the logic
+
+   - **Features of EJB**  
            - **Declarative Metadata** = simply declare to use the metadata to declare the intention
            - **Configuration by Exception** = convention over configuration. The developer does not need to configure anything id the sensible defaults suit the needs.
            - **Dependency Management** = Dependencies are automatically managed directly and transparently managed in business EJB components. EJB platform, in collaborain with the CDI API takes care of all the dependencies of the business components.
@@ -166,6 +168,5 @@ Note: Java EE is annotation driven.
        
      - **EJB Component Model (Lifecycle)** = for stateless and singleton _@PostConstruct_ and _@PreDestroy_ are the only lifecycle. Stateful EJB has two additional constructs, _@PrePassivate_ which is called before the bean is put to sleep or hibernated and _@PostActivate_ which is called when the bean is activated from passivation.
      - **Message Driven Beans** = beans used for messaging similar to publish-subscribe kind of system.
-
 
      - **EJB Container** = black box, a piece of code that manages EJBs (creation, management and destruction). Analogous to the CDI container.
