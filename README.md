@@ -170,3 +170,17 @@ Note: Java EE is annotation driven.
      - **Message Driven Beans** = beans used for messaging similar to publish-subscribe kind of system.
 
      - **EJB Container** = black box, a piece of code that manages EJBs (creation, management and destruction). Analogous to the CDI container.
+
+<hr />
+
+### Transactions
+    
+   - Transaction is just an abstraction that is used to group together a series of operations which must all be completed successfully or none or should be allowed to stand.
+   - Four Properties of Transaction
+        - Atomicity = all minute operations should either all be complete successfully or none should be completed at all.
+        - Consistency = after atomicity is ensured, data should be consistent with a laid down guidline and expectations. The data that result from the completion of the atomic operation must be consistent.
+        - Isolation = means that the change made within the transaction is only visible through the operations until there is a commit on the transaction and then that change can be seen by other atomic units. Dont expect a change happening within the transaction to be visible to any unit outside of the transaction.
+        - Durability = means that change is made within a transaction and beyond the completion of the transaction. The change must endure beyond the execution or the completion of the transaction.
+        - A transaction that meets these properties are said to be an ACID compliant transaction.
+        - Transaction Management (Bean vs Container). Container-managed transaction happens when the application developer delegate transaction management to the application server. Bean-managed transactions happen when the developer wants to manage the transaction on their own.
+        - CMT Transaction Management Attributes = There are times when fine-grained control is needed over transactional demarcations and boundaries. _@TransactionAttribute_ annotation is used with parameter TransactionAttributeType.
