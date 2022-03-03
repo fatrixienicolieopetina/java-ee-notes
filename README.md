@@ -143,3 +143,29 @@ Note: Java EE is annotation driven.
     - Collection values like @ManyToMany fields are lazily loaded
     - _@ElementCollection_ annotation is used to store collections of non-entity types to the db. This will create a new table with of foreign key of the embedding entity. _@CollectionTable_ annotation is used to customize the collection table created
     - _@OrderedBy_ annotation can be used to order a list of entities
+
+<hr />
+- ### Enterprise Java Beans
+    - **Enterprise Java Beans** gives a set of API, mostly annotation-driven that helps to make development of business easier. Goal is to help encapsulate the business level or the logic of the application in a well-defined way, i.e. it EJBs house the business the logic
+
+    - **Features of EJB**  
+           - **Declarative Metadata** = simply declare to use the metadata to declare the intention
+           - **Configuration by Exception** = convention over configuration. The developer does not need to configure anything id the sensible defaults suit the needs.
+           - **Dependency Management** = Dependencies are automatically managed directly and transparently managed in business EJB components. EJB platform, in collaborain with the CDI API takes care of all the dependencies of the business components.
+           - **Lifecycle Management** = EJB lifecycle is managed by the container, and there are clearly defined lifecycle with hooks at strategic points that app developers can easily customize if needed.
+           - **Scalability** = containers are designed for scalability from the ground up.
+           - **Transactionality** = Can declaratively manage transaction from business components.
+           - **Security** = all is needed is to declaratively mark security boundaries to be enforced and the container will take care of it
+           - **Portability** 
+        
+     - **Architecture of EJB** 
+             - **EJB Component Model** = comprises of the various session beans that is used, i.e. stateless, stateful, singleton and message-driven beans.
+             - **Stateless Session Bean (Stateless EJB)** = a component that sets out to complete a given task within the lifetime of a single method. Use _@Stateless_ annotation. It does not keep state. Every single method is isolated to do a single task. Analogous to request scoped beans in CDI. The beans are put in a pool, where the container will pick from if there is a request to inject the stateless bean. A transaction is created by default
+             - **Stateful Session Bean (Stateful EJB)** = uses_ @Stateful_ annotation. It is a component that keeps state. Stateful EJBS usually implement serializable because the container might need to serialize them. Since they contain states, the container cannot discard the beans. The bean keeps the state of the collaboration between the client and the server across invocations.
+             - **Singleton Beans** = one instance available across the application so this can be used to manage shared data. The instance last for the entire lifetime of the whole application. Uses _@Singleton_ annotation. _@Startup_ annotation means that the singleton is eagerly created. By default, only when the first instance is requested is the singleton created.
+       
+     - **EJB Component Model (Lifecycle)** = for stateless and singleton _@PostConstruct_ and _@PreDestroy_ are the only lifecycle. Stateful EJB has two additional constructs, _@PrePassivate_ which is called before the bean is put to sleep or hibernated and _@PostActivate_ which is called when the bean is activated from passivation.
+     - **Message Driven Beans** = beans used for messaging similar to publish-subscribe kind of system.
+
+
+     - **EJB Container** = black box, a piece of code that manages EJBs (creation, management and destruction). Analogous to the CDI container.
