@@ -208,6 +208,7 @@ Note: Java EE is annotation driven.
 <hr />
 
 ### Java Persistence Query Language (JPQL)
-    - JPQL is one of two major APIs for querying used in Java EE. It is a string based standard API for querying entities. It is very similar to SQL except that SQL are querying on tables while JPQL are querying on entities. It is very portable since it can port to almost all database vendors. It is string-based query langauge so type-safety is lost.
-    - Queries can be broken down into four broad categories, SELECT, AGGREGATE, UPDATE and DELETE. Select and aggregate can be called report queries since select is used to retrieve while aggregates are used to summarize. 
-    - JPQL queries can be broken down into named and dynamic queries. Named queries are more or less static, once they are defined, they cannot be changed at runtime. One advantage of named queries is they can be optimized by the provider.
+    
+  - JPQL is one of two major APIs for querying used in Java EE. It is a string based standard API for querying entities. It is very similar to SQL except that SQL are querying on tables while JPQL are querying on entities. It is very portable since it can port to almost all database vendors. It is string-based query langauge so type-safety is lost.
+   - Queries can be broken down into four broad categories, SELECT, AGGREGATE, UPDATE and DELETE. Select and aggregate can be called report queries since select is used to retrieve while aggregates are used to summarize. 
+   - JPQL queries can be broken down into named and dynamic queries. Named queries are more or less static, once they are defined, they cannot be changed at runtime. One advantage of named queries is they can be optimized by the provider.
