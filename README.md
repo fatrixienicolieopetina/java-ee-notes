@@ -212,3 +212,10 @@ Note: Java EE is annotation driven.
   - JPQL is one of two major APIs for querying used in Java EE. It is a string based standard API for querying entities. It is very similar to SQL except that SQL are querying on tables while JPQL are querying on entities. It is very portable since it can port to almost all database vendors. It is string-based query langauge so type-safety is lost.
    - Queries can be broken down into four broad categories, SELECT, AGGREGATE, UPDATE and DELETE. Select and aggregate can be called report queries since select is used to retrieve while aggregates are used to summarize. 
    - JPQL queries can be broken down into named and dynamic queries. Named queries are more or less static, once they are defined, they cannot be changed at runtime. One advantage of named queries is they can be optimized by the provider.
+   - Alias is required in JPQL
+   - SELECT expressions with combined PATH expressions returns a collection of arrays of type of objects. Constructor expression can be used to create a new Object from the projected data returned from the database.
+   - Querying over Maps using joins uses the values by default. Example, _select e.fullname, KEY(p), VALUE(p) from Employee e join e.phoneNumber_ given that phonenumber is a Map object.
+   - Fetch Join = eagerly fetches originally lazily loaded attributes of an entity. Example _select e from Employee e join fetch e.employeeAllowances_ where employeeAllowances is a lazily fetched set of allowances.
+   - Positional parameters(1?) can be used to add dynamic values to WHERE clauses that acts as filter. Named Parameters is also used to add conditions e.g. (:namedParameter).
+   - To use getSingleResult, you must know for a fact that the query will necessarily return one result only. If there is no result, it will throw a no result exception. If there are many results it throws a not unique exception. 
+   - The JPA Criteria API is an alternative to JPQL. It is typesafe since it enjoys compile time checks compared to the string-based JPQL. However it is quite verbose.
