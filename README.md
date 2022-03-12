@@ -150,21 +150,21 @@ Note: Java EE is annotation driven.
 
    - **Enterprise Java Beans** gives a set of API, mostly annotation-driven that helps to make development of business easier. Goal is to help encapsulate the business level or the logic of the application in a well-defined way, i.e. it EJBs house the business the logic
 
-   - **Features of EJB**  
-           - **Declarative Metadata** = simply declare to use the metadata to declare the intention
-           - **Configuration by Exception** = convention over configuration. The developer does not need to configure anything id the sensible defaults suit the needs.
-           - **Dependency Management** = Dependencies are automatically managed directly and transparently managed in business EJB components. EJB platform, in collaborain with the CDI API takes care of all the dependencies of the business components.
-           - **Lifecycle Management** = EJB lifecycle is managed by the container, and there are clearly defined lifecycle with hooks at strategic points that app developers can easily customize if needed.
-           - **Scalability** = containers are designed for scalability from the ground up.
-           - **Transactionality** = Can declaratively manage transaction from business components.
-           - **Security** = all is needed is to declaratively mark security boundaries to be enforced and the container will take care of it
-           - **Portability** 
+     - **Features of EJB**  
+            1. **Declarative Metadata** = simply declare to use the metadata to declare the intention<br/>
+            2. **Configuration by Exception** = convention over configuration. The developer does not need to configure anything id the sensible defaults suit the needs. <br/>
+            3. **Dependency Management** = Dependencies are automatically managed directly and transparently managed in business EJB components. EJB platform, in collaborain with the CDI API takes care of all the dependencies of the business components.<br/>
+            4. **Lifecycle Management** = EJB lifecycle is managed by the container, and there are clearly defined lifecycle with hooks at strategic points that app developers can easily customize if needed.<br/>
+            5. **Scalability** = containers are designed for scalability from the ground up.<br/>
+            6. **Transactionality** = Can declaratively manage transaction from business components.<br/>
+            7. **Security** = all is needed is to declaratively mark security boundaries to be enforced and the container will take care of it
+            8. **Portability** <br/>
         
      - **Architecture of EJB** 
-             - **EJB Component Model** = comprises of the various session beans that is used, i.e. stateless, stateful, singleton and message-driven beans.
-             - **Stateless Session Bean (Stateless EJB)** = a component that sets out to complete a given task within the lifetime of a single method. Use _@Stateless_ annotation. It does not keep state. Every single method is isolated to do a single task. Analogous to request scoped beans in CDI. The beans are put in a pool, where the container will pick from if there is a request to inject the stateless bean. A transaction is created by default
-             - **Stateful Session Bean (Stateful EJB)** = uses_ @Stateful_ annotation. It is a component that keeps state. Stateful EJBS usually implement serializable because the container might need to serialize them. Since they contain states, the container cannot discard the beans. The bean keeps the state of the collaboration between the client and the server across invocations.
-             - **Singleton Beans** = one instance available across the application so this can be used to manage shared data. The instance last for the entire lifetime of the whole application. Uses _@Singleton_ annotation. _@Startup_ annotation means that the singleton is eagerly created. By default, only when the first instance is requested is the singleton created.
+             1. **EJB Component Model** = comprises of the various session beans that is used, i.e. stateless, stateful, singleton and message-driven beans. <br/>
+             2. **Stateless Session Bean (Stateless EJB)** = a component that sets out to complete a given task within the lifetime of a single method. Use _@Stateless_ annotation. It does not keep state. Every single method is isolated to do a single task. Analogous to request scoped beans in CDI. The beans are put in a pool, where the container will pick from if there is a request to inject the stateless bean. A transaction is created by default <br/>
+             3. **Stateful Session Bean (Stateful EJB)** = uses _@Stateful_ annotation. It is a component that keeps state. Stateful EJBS usually implement serializable because the container might need to serialize them. Since they contain states, the container cannot discard the beans. The bean keeps the state of the collaboration between the client and the server across invocations.<br/>
+             4. **Singleton Beans** = one instance available across the application so this can be used to manage shared data. The instance last for the entire lifetime of the whole application. Uses _@Singleton_ annotation. _@Startup_ annotation means that the singleton is eagerly created. By default, only when the first instance is requested is the singleton created.<br/>
        
      - **EJB Component Model (Lifecycle)** = for stateless and singleton _@PostConstruct_ and _@PreDestroy_ are the only lifecycle. Stateful EJB has two additional constructs, _@PrePassivate_ which is called before the bean is put to sleep or hibernated and _@PostActivate_ which is called when the bean is activated from passivation.
      - **Message Driven Beans** = beans used for messaging similar to publish-subscribe kind of system.
@@ -219,3 +219,31 @@ Note: Java EE is annotation driven.
    - Positional parameters(1?) can be used to add dynamic values to WHERE clauses that acts as filter. Named Parameters is also used to add conditions e.g. (:namedParameter).
    - To use getSingleResult, you must know for a fact that the query will necessarily return one result only. If there is no result, it will throw a no result exception. If there are many results it throws a not unique exception. 
    - The JPA Criteria API is an alternative to JPQL. It is typesafe since it enjoys compile time checks compared to the string-based JPQL. However it is quite verbose.
+    
+
+<hr />
+
+### JPA Validations
+   - **Bean Validation API** = declarative way of specifying constraints on fields of a given class or properties of a class. For instance, just before an entity is persisted, the runtime will validate the class. If the validation fails a constraint validation exception will be wrapped in an EJB exception and be thrown.
+   - There are validations available on Java EE and also in Java SE
+   - Examples are _@NotEmpty_, _@Past_, @NotNull,  _@PastOrPresent_, _@DecimalMax_, _@DecimalMin_, _@Future_, _@Pattern_, _@Size_, 
+   - **Entity Lifecycle Callbacks** =  @Prepersist gets invoked when the entity is just about to be put into the database. @PostPersist is invoked after a persist happens, but does not mean that the transaction has been committed, thus should not rely on the invocation of this lifecycle that a transaction has completed successfully. @PreUpdate and @PostUpdate will be invoked just before/after an entity is updated. @PostLoad is invoked when the entity has been loaded from the database and populated with data. 
+    
+<hr />
+    
+### Entity Listeners
+- Entity Listener is an API construct that can be used to isolate lifecycle callbacks from the entity. This can be done if the lifecycle callback method is not necessarily unique to the entity. 
+ - To associate the entitylistener to an entity, @EntityListeners annotation is used and entity listener classes is passed as an argument
+    
+<hr />
+ 
+### Native Queries
+- JPA supports native queries where native SQL queries can be issued and get the results back. The results will be casted to Java objects. There is anamed native query and there is also dynamic native SQL. In using named native query, an annotation @NamedNativeQuery can be used. Everything that can be done in SQL can be used in a native query. Dynamic native query can be done by using the EntityManager#createNativeQuery method. Instead of naming the query, the SQL string is passed directly. Dynamic native query returns a query interface and not a type query so the return type is not checked. 
+    
+ <hr />
+    
+ ### Equals and hashcode
+   
+   - **General Contract - Equals Method** = (1) It is reflexive : For any reference value x, x.equals(x) must return true. (2) It is symmetric : For any reference values x and y, x.equals(y) must return true if and if y.equals(x) return true. (3) It is transitive : For any reference values x, y and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) must return true. (4) It is consistent: For any reference values x and y, multiple invocations of x.equals (y) consistently returns true or consistently returns false, provided no information used in equals comparisons on the object is modified. 
+   - **General Contract - Hashcode method** = (1) Whenever it is invoked on the same object more than once during an execution of an application, the hashcode method must consistently return the same integer provided no information used in equals comparison on the object is modified. (2) This integer need not remain consistent from one execution of an application to another execution of the same applicaton. (3) When two objects are equal according to the equals(Object) method, then calling the hashcode method on each of the two objects must produce the same integer result. (4) It is not required that if two objects are unequal according to the equals method, then calling the hashcode method on each of the two Objects must produce distinct integer results. Programmers should be aware that producing distinct integer results for unequal objects may improvde the performance of hashtables.
+    
