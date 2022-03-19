@@ -272,3 +272,8 @@ Note: Java EE is annotation driven.
   - JAX-RS Synchronous Client API = used to access RESTful web services across the internet. The _Client_ object is the gateway of JAX-RS API. 
   - Server-sent Events (SSE) = is an HTTP push API or one-way communication between the server and the client.
   - Websocket is one of the protocols used by a server to send messages to the client. Websockets are fully bidirectional, clients can also send messages to the server. 
+    
+<hr />
+ 
+### Testing in Java EE
+  - Arquillian is a testing framework for integration tests. Arquillian also integrates with JUnit. 
