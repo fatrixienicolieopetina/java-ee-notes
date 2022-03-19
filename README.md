@@ -271,3 +271,4 @@ Note: Java EE is annotation driven.
   -JSON-P API = is a low-level API that enables developers to dynamically construct JSON objects. Some methods include _Json.createObjectBuilder, Json.createArrayObjectBuilder_, etc., which creates a hypermedia resource. 
   - JAX-RS Synchronous Client API = used to access RESTful web services across the internet. The _Client_ object is the gateway of JAX-RS API. 
   - Server-sent Events (SSE) = is an HTTP push API or one-way communication between the server and the client.
+  - Websocket is one of the protocols used by a server to send messages to the client. Websockets are fully bidirectional, clients can also send messages to the server. 
